@@ -1,4 +1,4 @@
-# 📊 HR Analytics Dashboard
+# 📊 HR Attrition Analysis
 
 ### 🚀 Project Overview
 This project analyzes employee attrition data to identify key factors contributing to employee turnover. The goal is to provide actionable insights for the HR department to improve employee retention and satisfaction.
@@ -19,11 +19,15 @@ This project analyzes employee attrition data to identify key factors contributi
 
 ---
 
-### 🔍 Key Insights & KPI's
-- **Attrition Rate:** Analyzed overall attrition percentage.
-- **Demographics:** Breakdown of attrition by Age, Gender, and Marital Status.
-- **Job Roles:** Identified which departments and roles have the highest turnover.
-- **Salary & Tenure:** Correlation between years of experience, salary slabs, and attrition.
+### 🔍 Key Insights 
+Based on the data analysis, here are the major findings:
+
+- **Overall Attrition:** The company's total attrition rate stands at **16.12%**.
+- **Department Analysis:**
+  - The **Sales** department has the highest attrition rate at **20.63%**.
+  - Human Resources follows closely at 19.05%, while R&D is the most stable with 13.84%.
+- **Impact of Overtime:** Overtime is a critical factor. Employees working overtime have a significantly higher attrition rate (**30.53%**) compared to those who do not (**10.44%**).
+- **Salary Sensitivity:** There is a strong correlation between salary and retention. Employees in the 'Low Salary' slab have an attrition rate of **21.76%**, whereas it drops to just **3.76%** for 'High Salary' employees.
 
 ---
 
