@@ -1,0 +1,81 @@
+-- HR Analytics Project
+-- Created by: Urvashi
+
+-- Create of the database for the project
+CREATE DATABASE IF NOT EXISTS hr_project;
+
+USE hr_project;
+-- Create table of 17 columns 
+CREATE TABLE employee_data (
+    Age INT,
+    Attrition VARCHAR(20),
+    BusinessTravel VARCHAR(50),
+    Department VARCHAR(50),
+    DistanceFromHome INT,
+    EducationField VARCHAR(50),
+    Gender VARCHAR(20),
+    JobRole VARCHAR(50),
+    MaritalStatus VARCHAR(20),
+    MonthlyIncome INT,
+    NumCompaniesWorked INT,
+    OverTime VARCHAR(20),
+    PercentSalaryHike INT,
+    TotalWorkingYears INT,
+    YearsAtCompany INT,
+    YearsInCurrentRole INT,
+    YearsSinceLastPromotion INT
+);
+
+SELECT * FROM employee_data LIMIT 10;
+
+-- 1. Checking Total employees and Attrition Rate
+SELECT 
+    COUNT(*) AS Total_Employees,
+    SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) AS Employees_Left,
+    ROUND(
+        (SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 
+        2
+    ) AS Attrition_Rate
+FROM employee_data;
+
+-- 2. Attrition Analysis by Department 
+SELECT 
+	Department,
+    COUNT(*) AS Total_Employees,
+    SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) AS Employees_Left,
+    ROUND(
+        (SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 
+        2
+    ) AS Attrition_Rate
+FROM employee_data
+GROUP BY Department
+ORDER BY Attrition_Rate DESC;   -- Output: Sales department has highest rate
+
+-- 3. Impact of Overtime on Attrition
+SELECT 
+    OverTime,
+    COUNT(*) AS Total_Employees,
+    SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) AS Employees_Left,
+    ROUND(
+        (SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 
+        2
+    ) AS Attrition_Rate
+FROM employee_data
+GROUP BY OverTime;   -- Output:- Overtime is the main reason
+
+-- Attrition due to Salary
+SELECT 
+    CASE 
+        WHEN MonthlyIncome <= 5000 THEN '1. Low Salary (<5k)'
+        WHEN MonthlyIncome > 5000 AND MonthlyIncome <= 15000 THEN '2. Medium Salary (5k-15k)'
+        ELSE '3. High Salary (>15k)'
+    END AS Salary_Range,
+    COUNT(*) AS Total_Employees,
+    SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) AS Employees_Left,
+    ROUND(
+        (SUM(CASE WHEN Attrition = 'Yes' THEN 1 ELSE 0 END) / COUNT(*)) * 100, 
+        2
+    ) AS Attrition_Rate
+FROM employee_data
+GROUP BY Salary_Range
+ORDER BY Salary_Range;      
