@@ -1,87 +1,110 @@
-# 📊 HR Attrition & Retention Analytics (End-to-End Data Pipeline)
+<div align="center">
 
-An enterprise-grade Data Analytics project designed to identify core drivers of employee turnover, model retention risk, and provide actionable, data-driven HR strategies to reduce organizational attrition costs.
+# 📊 HR Attrition & Retention Analytics
+### *An Enterprise-Grade End-to-End Data Engineering & BI Pipeline*
 
----
-
-## 🚀 Executive Summary & Business Impact
-
-**The Problem:** High employee turnover is an expensive drain on organizational resources, costing an estimated $50k-$150k per lost employee in recruitment, onboarding, and lost productivity. 
-**The Solution:** This project builds an interactive Power BI dashboard backed by a robust SQL data pipeline to transition HR from 'reactive' reporting to 'proactive' retention strategies.
-
-### 💡 Key Findings & Strategic Recommendations
-- **Overtime is Toxic:** Employees working consistent overtime show a **30.53% attrition rate** compared to **10.44%** for non-overtime workers. 
-  *👉 Recommendation: Implement hard-caps on weekly overtime hours or introduce mandatory cooling-off periods for high-burnout roles like Sales Reps.*
-- **Salary Band Sensitivity:** Attrition in the lowest salary bracket (<$5k) is exceptionally high at **21.76%**.
-  *👉 Recommendation: Restructure compensation for entry-level technical roles to match market medians, reducing replacement costs by an estimated 15% annually.*
-- **Career Stagnation:** The highest flight risk cohort consists of employees with 4+ years of tenure but no promotions in the last 2-3 years.
-  *👉 Recommendation: Institute a structured 2-year rotational or upskilling path for mid-level employees to maintain engagement.*
+[![SQL](https://img.shields.io/badge/SQL-Advanced-blue?style=for-the-badge&logo=mysql)](./sql)
+[![Power BI](https://img.shields.io/badge/Power_BI-Mastery-yellow?style=for-the-badge&logo=powerbi)](./dashboards)
+[![Data Modeling](https://img.shields.io/badge/Data_Modeling-Star_Schema-green?style=for-the-badge&logo=diagrams.net)](./dashboards)
+[![Business Impact](https://img.shields.io/badge/Business-ROI%20Driven-red?style=for-the-badge&logo=googleanalytics)](./README.md)
 
 ---
 
-## 🏗️ Architecture & Tech Stack
+**Empowering HR departments to transition from reactive reporting to proactive, data-driven retention strategies.**
 
-This project follows an ELT (Extract, Load, Transform) architectural pattern suitable for modern BI environments:
+[Explore SQL Pipeline](./sql) • [View Dashboard](./dashboards) • [Read Strategic Insights](#-strategic-business-insights)
 
-1. **Database / Warehouse:** `MySQL / PostgreSQL` (Raw data ingestion, cleaning, and staging)
-2. **Transformations:** Advanced SQL (Window Functions, CTEs, Views)
-3. **Data Modeling:** `Power BI / DAX` (Star Schema formulation)
-4. **Visualization:** `Power BI` (Interactive Dashboards)
+</div>
 
-### 📁 Repository Structure
-```text
-HR-Analytics-Dashboard/
-│
-├── data/
-│   ├── raw_data.csv            # Source dataset (IBM HR Attrition Data)
-│   └── data_dictionary.md      # Metadata and column definitions
-│
-├── sql/
-│   ├── 01_data_cleaning.sql    # DDL, schema creation, and standardization
-│   ├── 02_exploratory_analysis.sql # EDA, macro-trends, aggregate metrics
-│   └── 03_advanced_hr_metrics.sql  # CTEs, Window Functions, predictive risk views
-│
-├── dashboards/
-│   └── HR_Analytics_Final.pbix # Interactive Power BI Dashboard 
-│
-└── docs/
-    └── Dashboard.png           # High-res screenshot of the final report
+## 📌 Project Overview
+
+High employee turnover is a silent drain on corporate profitability, costing between **$50,000 and $150,000** per lost employee. This project develops a sophisticated analytical ecosystem—from raw data cleaning in SQL to interactive storytelling in Power BI—to identify and mitigate these risks.
+
+---
+
+## 🏗️ The Analytical Architecture
+
+This pipeline follows a modern **ELT (Extract, Load, Transform)** workflow designed for scalability and performance.
+
+### 🛠️ Tech Stack
+- **Database Engine:** MySQL / PostgreSQL (High-performance analytical storage)
+- **Data Engineering:** Advanced SQL (CTEs, Window Functions, Views)
+- **Business Intelligence:** Power BI Desktop (Semantic modeling)
+- **Data Modeling:** Star Schema (Optimized for cross-filtering)
+
+---
+
+## 📂 Repository Structure
+
+```mermaid
+graph TD
+    A[Root] --> B[data/]
+    A --> C[sql/]
+    A --> D[dashboards/]
+    A --> E[docs/]
+    
+    B --> B1[raw_data.csv]
+    B --> B2[data_dictionary.md]
+    
+    C --> C1[01_data_cleaning.sql]
+    C --> C2[02_exploratory_analysis.sql]
+    C --> C3[03_advanced_hr_metrics.sql]
+    
+    D --> D1[HR_Analytics_Final.pbix]
+    E --> E1[Dashboard.png]
 ```
 
 ---
 
-## 🛠️ Data Modeling & DAX (Power BI)
+## 💡 Strategic Business Insights
 
-The analytical model relies on a robust **Star Schema** to ensure performant querying and cross-filtering:
-- **Fact Table:** `Fact_Attrition` (Contains granular employee movement and metrics)
-- **Dimension Tables:** `Dim_Demographics`, `Dim_JobRole`, `Dim_Date`
+Based on deep-dive SQL analysis and interactive Power BI modeling, the following high-impact drivers were identified:
 
-**Key DAX Measures highlighting technical depth:**
-- **YTD Attrition Rate:** Tracks running turnover percentages to spot seasonal spikes.
-- **Dynamic Title Generation:** Changes based on the selected slicers (e.g., `"Viewing Attrition for: Department [Sales]"`)
-- **What-If Parameter (Compensation Strategy):** Allows stakeholders to input a hypothetical % salary hike to simulate its modeled impact on the retention rate.
+### ⛈️ The "Overtime Attrition" Correlation
+*   **Metric:** Employees working overtime show a **30.53% attrition rate** vs. **10.44%** for others.
+*   **Strategy:** Implement high-burnout role tracking and mandatory "wellness-cooldowns" for departments like Sales.
+
+### 💵 Salary Sensitivity Analysis
+*   **Metric:** Attrition in the 'Low Salary' bracket (<$5k) stands at **21.76%**.
+*   **Strategy:** Perform a market-index salary adjustment to reduce replacement costs by an estimated **15% annually**.
+
+### 📉 Progression Stagnation
+*   **Metric:** Employees with 4+ years of tenure and NO promotions are at **highest risk**.
+*   **Strategy:** Enforce a 2-year rotational skill-transfer program to maintain employee engagement.
+
+---
+
+## 💻 Technical Deep Dive
+
+### 🔑 SQL Advanced Engineering
+We utilize advanced syntax to build predictive indicators:
+- **Window Functions:** `PERCENT_RANK()` to evaluate internal salary parity.
+- **CTEs:** Multi-stage survival analysis based on tenure and promotion history.
+- **Predictive Views:** `v_High_Flight_Risk_Employees` to flag individuals based on compounding factors.
+
+### 📊 Power BI & DAX Mastery
+- **Star Schema:** Denormalized fact table linked to optimized dimensions.
+- **Complex DAX:** 
+    - `YTD Attrition Rate`
+    - `Rolling 3-Month Turnover Average`
+    - `What-If Scenarios` for salary-based retention modeling.
 
 ---
 
 ## 📸 Dashboard Preview
 
-![HR Analytics Dashboard](docs/Dashboard.png)
-
-*(The dashboard includes interactive cross-highlighting, tooltips for micro-trends, and drill-through capabilities from Department -> Job Role -> Individual Employee).*
+![Dashboard Screenshot](docs/Dashboard.png)
 
 ---
 
-## ⚙️ How to Run This Project Locally
+## 🚀 Getting Started
 
-1. **Database Setup:**
-   - Execute the SQL scripts in the `sql/` folder in sequential order (`01`, `02`, `03`) on your local database server.
-   - Use the import wizard of your SQL client to load `data/raw_data.csv` into the `employee_data` table.
-
-2. **Power BI Configuration:**
-   - Open `dashboards/HR_Analytics_Final.pbix` using Power BI Desktop.
-   - Go to `Transform Data` -> `Data Source Settings` and update the SQL Server connection string to point to your local localhost instance.
-   - Click `Refresh` to load the current semantic model.
+1.  **Clone the Repo:** `git clone https://github.com/palurvashi2004-rgb/HR-Analytics-Dashboard.git`
+2.  **Run SQL Scripts:** Execute `sql/01`, `02`, and `03` in order to build your analytical environment.
+3.  **Open Dashboard:** Load `dashboards/HR_Analytics_Final.pbix` and update the Data Source Settings to your local SQL instance.
 
 ---
 
-*Author: Urvashi | Built to demonstrate end-to-end analytical engineering and business intelligence.*
+<div align="center">
+Developed with ❤️ for Data Excellence by <b>Urvashi</b>
+</div>
